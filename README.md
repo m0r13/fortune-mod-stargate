@@ -1,4 +1,19 @@
 fortune-mod-stargate
-====================
+==================
 
-Quotes from the Stargate series for fortune.
+This project contains quotes from the Stargate series in a format usable
+with fortune. The quotes are downloaded and parsed from wikiquote with
+a small python script.
+
+Use the Makefile to download and install the fortune cookies. 
+Run ``make stargate`` to download/parse the quotes and 
+``make stargate.dat`` to create the random access file required for
+fortune. ``make prefix=[prefix] install`` will install the fortune 
+cookies into ``[prefix]/share/fortune/``.
+
+You need python2 and BeautifulSoup to download and parse the quotes
+from wikiquote. The quotes are already contained in the repository,
+so you usually only need to create the random access file for fortune
+with strfile. If you still want to use the ``parse_wikiquote.py``
+script, the usage is `./parse_wikiquote.py [wikiquote-urls]` and the
+script outputs the quotes separated with the ``%`` char.
