@@ -8,10 +8,16 @@ def parse_wikiquote(url):
     quotes = []
     soup = BeautifulSoup(urllib2.urlopen(url).read())
     for quote in soup.find_all("dl"):
-        text = quote.get_text().encode("ascii", "ignore").strip()
-        if not text:
-            continue
-        quotes.append(text + "\n")
+        lines = []
+        for dd in quote.find_all("dd"):
+            if dd.find("hr") and len(lines) != 0:
+                quotes.append("\n".join(lines) + "\n")
+                lines = []
+            text = dd.get_text().encode("ascii", "ignore").strip()
+            if text:
+                lines.append(text)
+        if len(lines) != 0:
+            quotes.append("\n".join(lines) + "\n")
     return quotes
 
 if __name__ == "__main__":
