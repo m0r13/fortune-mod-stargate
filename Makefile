@@ -1,14 +1,14 @@
 .PHONY: all install clean
 
-prefix := /usr/share
+prefix := /usr
 
 all: stargate.dat
 
 install: all
 	test -d $(prefix)/fortune || mkdir -p $(prefix)/fortune
 
-	install -m 0644 stargate $(prefix)/fortune/stargate
-	install -m 0644 stargate.dat $(prefix)/fortune/stargate.dat
+	install -m 0644 stargate $(prefix)/share/fortune/stargate
+	install -m 0644 stargate.dat $(prefix)/share/fortune/stargate.dat
 
 clean:
 	rm -rf stargate stargate.dat
